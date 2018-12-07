@@ -9,7 +9,7 @@ const config = {
   messagingSenderId: "1015737797214"
 };
 
-if (firebase.apps.length) {
+if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }
 
@@ -17,4 +17,9 @@ const auth = firebase.auth();
 
 const fs = firebase.firestore();
 
-export { auth, fs };
+const storage = firebase.storage();
+
+const settings = { timestampsInSnapshots: true };
+fs.settings(settings);
+
+export { auth, fs, firebase, storage };
