@@ -9,6 +9,11 @@ export const get = ({ uid }) =>
     .orderBy("created_at", "desc")
     .get();
 
+/**
+ *
+ * @param {*} data | { author, content, created_at, media: [], likes: [] }
+ * @param {*} param1 uid => author
+ */
 export const post = (data, { uid }) => {
   return fs
     .collection(`users`)
@@ -16,6 +21,7 @@ export const post = (data, { uid }) => {
     .collection(`posts`)
     .add({
       ...data,
+      author: uid,
       created_at: new Date()
     });
 };
