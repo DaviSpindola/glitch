@@ -1,14 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
-import * as routes from "../constants/routes";
 
-import NavigationBar from "./component/NavigationBar/NavigationBar";
+import * as User from "../firebase/firestore/user";
 import MainPage from "./pages/MainPage";
+import * as routes from "../constants/routes";
+import NavigationBarContainer from "./component/NavigationBar";
 
 class TwitterContainer extends React.Component {
   componentDidMount() {
-    const { history, authUser } = this.props;
+    const { authUser, setSessionUser } = this.props;
+
+    if (authUser && authUser.uid !== null) {
+      User.get(authUser).then(snapshot => {
+        snapshot.ref.onSnapshot(doc => {
+          setSessionUser(doc.data());
+        });
+      });
+    }
   }
 
   render() {
@@ -16,8 +25,7 @@ class TwitterContainer extends React.Component {
 
     return (
       <React.Fragment>
-        <NavigationBar />
-
+        <NavigationBarContainer />
         <Route
           path={`${routes.MAIN_PAGE}`}
           render={props => console.log(props) || <MainPage {...props} />}
@@ -31,4 +39,12 @@ const mapStateToProps = state => ({
   authUser: state.sessionState.authUser
 });
 
-export default connect(mapStateToProps)(TwitterContainer);
+const mapDispatchToProps = dispatch => ({
+  setSessionUser: informations =>
+    dispatch({ type: "SET_SESSION_USER_INFORMATIONS", informations })
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TwitterContainer);

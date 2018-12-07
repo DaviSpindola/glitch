@@ -8,11 +8,12 @@ const Feed = ({ posts, classes }) => {
     <div className={classes.root}>
       <List>
         {_.orderBy(posts, ["created_at"], ["desc"]).map(
-          ({ content, created_at, uid }, key) => (
+          ({ content, created_at, author, dowloadUrl }, key) => (
             <FeedItemContainer
               key={key}
               content={content}
-              uid={uid}
+              media={dowloadUrl}
+              uid={author}
               created_at={created_at}
             />
           )
@@ -26,11 +27,13 @@ const styles = {
   root: {
     display: "flex",
     justifyContent: "center",
-    width: "100%",
+    width: "50%",
+    "@media (max-width: 480px)": {
+      width: "100%"
+    },
     "& > ul": {
       width: "100%",
-      paddingTop: 0,
-      paddingRight: 15
+      paddingTop: 0
     }
   }
 };

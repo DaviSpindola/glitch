@@ -15,6 +15,8 @@ const withAuthentication = routes => C => {
 
       if (authUser) {
         if (!routes.includes(location.pathname)) {
+          return history.push(`/${authUser.uid}`);
+        } else {
           return;
         }
       } else {

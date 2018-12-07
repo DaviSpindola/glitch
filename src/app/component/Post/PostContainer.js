@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import DialogContainer from "../../reusable/Dialog";
 import Form from "./Form";
 import { post } from "../../../firebase/firestore/user/post";
-import { Button, withStyles } from "@material-ui/core";
+import { Button, withStyles, Fab, Icon } from "@material-ui/core";
 import { compose } from "recompose";
 import styles from "./styles";
 import Actions from "./Actions";
@@ -38,7 +38,11 @@ class PostContainer extends React.Component {
     return (
       <div>
         <DialogContainer
-          render={<Button className={classes.postButton}>Tweetar</Button>}
+          render={
+            <Fab className={classes.postButton}>
+              <Icon>create</Icon>
+            </Fab>
+          }
         >
           <PublicationContainer />
         </DialogContainer>

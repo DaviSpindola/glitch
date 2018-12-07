@@ -19,7 +19,9 @@ const styles = ({ spacing }) => ({
   },
   postButton: {
     backgroundColor: "#5bbf9c",
-    borderRadius: 20
+    position: "fixed",
+    bottom: 15,
+    right: 15
   }
 });
 

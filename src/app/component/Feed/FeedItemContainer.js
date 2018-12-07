@@ -11,7 +11,7 @@ class FeedItemContainer extends React.Component {
   componentDidMount() {
     const { uid } = this.props;
 
-    User.get(uid)
+    User.get({ uid })
       .then(snapshot => {
         this.setState({ author: snapshot.data() });
       })
@@ -20,7 +20,6 @@ class FeedItemContainer extends React.Component {
 
   render() {
     const { author } = this.state;
-    console.log(author);
     return (
       <div>{!!author && <FeedItem {...this.props} author={author} />}</div>
     );

@@ -16,16 +16,12 @@ import FloatMenu from "../../reusable/FloatMenu";
 import { ExitToApp } from "@material-ui/icons";
 import { auth } from "../../../firebase";
 
-const NavigationBar = ({ classes }) => {
+const NavigationBar = ({ classes, photo }) => {
   return (
     <AppBar className={classes.root}>
       <Toolbar className={classes.toolbar}>
         <div className={classes.lateralMenu}>
-          <FloatMenu
-            render={
-              <Avatar src="https://pbs.twimg.com/profile_images/1067918897008033793/QPA_el_p_400x400.jpg" />
-            }
-          >
+          <FloatMenu render={<Avatar src={photo} />}>
             <MenuList>
               <MenuItem onClick={() => auth.doSignOut()}>
                 <ListItemIcon>
@@ -37,7 +33,6 @@ const NavigationBar = ({ classes }) => {
               <MenuItem>oi</MenuItem>
             </MenuList>
           </FloatMenu>
-          <PostContainer />
         </div>
       </Toolbar>
     </AppBar>

@@ -2,19 +2,23 @@ import React from "react";
 import { connect } from "react-redux";
 
 import * as Posts from "../../../firebase/firestore/user/post";
+import * as Publications from "../../../firebase/firestore/user/plubication";
 import Feed from "./Feed";
 
 class FeedContainer extends React.Component {
   componentDidMount() {
     const { match } = this.props;
 
-    Posts.observerPosts(match.params).subscribe();
+    if (match.params.uid) {
+      Publications.observePublications(match.params).subscribe();
+    }
   }
 
   componentWillUnmount() {
     const { match } = this.props;
-
-    Posts.observerPosts(match.params).unsubscribe();
+    if (match.params.uid) {
+      Publications.observePublications(match.params).unsubscribe();
+    }
   }
 
   render() {

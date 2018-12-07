@@ -2,6 +2,7 @@ import React from "react";
 import ProfileSidebar from "../../component/ProfileSidebar";
 import FeedContainer from "../../component/Feed";
 import { withStyles } from "@material-ui/core";
+import PostContainer from "../../component/Post/PostContainer";
 
 class MainPage extends React.Component {
   render() {
@@ -9,9 +10,11 @@ class MainPage extends React.Component {
 
     return (
       <div className={classes.root}>
-        <ProfileSidebar match={match} />
+        {/* <ProfileSidebar match={match} /> */}
         <FeedContainer match={match} />
+        <PostContainer />
       </div>
+      // // );
     );
   }
 }
@@ -19,7 +22,8 @@ class MainPage extends React.Component {
 const styles = theme => ({
   root: {
     display: "flex",
-    paddingTop: 10
+    paddingTop: 10,
+    justifyContent: "center"
   }
 });
 
