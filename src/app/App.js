@@ -3,6 +3,7 @@ import "./App.css";
 import PagesContainer from "./pages";
 import withAuthentication from "./reusable/withAuthentication";
 import { noAuthRoutes } from "../constants/routes";
+import Notification from "./reusable/Notification";
 
 class App extends Component {
   componentDidMount() {
@@ -13,6 +14,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <PagesContainer />
+        <Notification />
       </React.Fragment>
     );
   }
