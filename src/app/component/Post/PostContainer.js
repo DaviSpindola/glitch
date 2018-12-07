@@ -9,6 +9,7 @@ import { compose } from "recompose";
 import styles from "./styles";
 import Actions from "./Actions";
 import { upload } from "../../../firebase/storage";
+import PublicationContainer from "../Publication";
 
 class PostContainer extends React.Component {
   state = {
@@ -39,12 +40,7 @@ class PostContainer extends React.Component {
         <DialogContainer
           render={<Button className={classes.postButton}>Tweetar</Button>}
         >
-          <Form
-            handleInput={this.handleInput}
-            handleSubmit={this.handleSubmit}
-            {...this.state}
-            onChange={this.onChange}
-          />
+          <PublicationContainer />
         </DialogContainer>
       </div>
     );
