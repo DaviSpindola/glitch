@@ -4,5 +4,5 @@ export const getAll = ({ uid }) =>
   fs
     .collection(`users`)
     .doc(uid)
-    .collection(`media`)
+    .collection(`publications`)
     .get();

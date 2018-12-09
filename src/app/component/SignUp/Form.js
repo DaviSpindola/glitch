@@ -3,22 +3,22 @@ import { TextField, Button, withStyles, Checkbox } from "@material-ui/core";
 import styles from "./styles";
 
 const Form = ({ handleInput, handleSubmit, classes, ...inputs }) => {
-  const { username, nickname, email, password, isChecked } = inputs;
+  const { name, username, email, password, isChecked } = inputs;
 
   return (
     <form onSubmit={handleSubmit} className={classes.root}>
       <TextField
         id="sigup-username"
-        label="Username"
-        name="username"
-        value={username}
+        label="Nome"
+        name="name"
+        value={name}
         onChange={handleInput}
       />
       <TextField
         id="sigup-nickname"
-        label="Nickname"
-        name="nickname"
-        value={nickname}
+        label="Nome de usuário"
+        name="username"
+        value={username}
         onChange={handleInput}
       />
       <TextField

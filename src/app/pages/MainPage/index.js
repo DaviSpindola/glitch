@@ -1,17 +1,48 @@
 import React from "react";
-import ProfileSidebar from "../../component/ProfileSidebar";
-import FeedContainer from "../../component/Feed";
+import { connect } from "react-redux";
+import { compose } from "recompose";
+import { Switch, Route, withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
-import PostContainer from "../../component/Post/PostContainer";
+
+import * as routes from "../../../constants/routes";
+import FeedContainer from "../../component/App/Feed";
+import * as User from "../../../firebase/firestore/user";
+import ProfileSidebar from "../../component/App/ProfileSidebar";
+import ProfileCanopy from "../../component/App/ProfileCanopy";
+import NavigationBar from "../../component/Session/NavigationBar";
+import PostContainer from "../../component/Session/Post/PostContainer";
 
 class MainPage extends React.Component {
+  componentDidMount() {
+    const { match, setUserProfile } = this.props;
+    if (match.params.uid) {
+      User.get(match.params).then(snapshot => {
+        snapshot.ref.onSnapshot(doc => {
+          setUserProfile(doc.data());
+        });
+      });
+    }
+  }
+
   render() {
-    const { classes, match } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
-        {/* <ProfileSidebar match={match} /> */}
-        <FeedContainer match={match} />
+        {/* <ProfileSidebar match={match} k/> */}
+        <ProfileCanopy />
+        <Switch>
+          <Route
+            exact
+            path={routes.MAIN_BASE_PROFILE}
+            render={props => (
+              <div>
+                <ProfileSidebar {...props} />
+                <FeedContainer {...props} />
+              </div>
+            )}
+          />
+        </Switch>
         <PostContainer />
       </div>
       // // );
@@ -22,9 +53,19 @@ class MainPage extends React.Component {
 const styles = theme => ({
   root: {
     display: "flex",
-    paddingTop: 10,
-    justifyContent: "center"
+    flexDirection: "column"
   }
 });
 
-export default withStyles(styles)(MainPage);
+const mapDispatchToProps = dispatch => ({
+  setUserProfile: user => dispatch({ type: "SET_USER_INFORMATIONS", user })
+});
+
+export default compose(
+  withStyles(styles),
+  withRouter,
+  connect(
+    null,
+    mapDispatchToProps
+  )
+)(MainPage);

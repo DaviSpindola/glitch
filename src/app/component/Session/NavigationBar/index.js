@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import NavigationBar from "./NavigationBar";
+import withSessionInfo from "../withSessionInfo";
 
 class NavigationBarContainer extends React.Component {
   render() {
@@ -9,8 +10,4 @@ class NavigationBarContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  photo: state.sessionUserState.photo
-});
-
-export default connect(mapStateToProps)(NavigationBarContainer);
+export default withSessionInfo(NavigationBarContainer);

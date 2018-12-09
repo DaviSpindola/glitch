@@ -2,16 +2,18 @@ import React from "react";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
-import * as Media from "../../../firebase/firestore/user/media";
+import * as Media from "../../../../firebase/firestore/user/media";
 import MediaBox from "./MediaBox";
-import { Typography } from "@material-ui/core";
+import { Typography, Icon } from "@material-ui/core";
 
 class PhotoRail extends React.Component {
   componentDidMount() {
     const { match, receiveMedia } = this.props;
     Media.getAll(match.params).then(res => {
       res.forEach(item => {
-        receiveMedia(item.data());
+        return Object.keys(item.data()).includes("dowloadUrl")
+          ? receiveMedia(item.data())
+          : false;
       });
     });
   }
@@ -21,14 +23,15 @@ class PhotoRail extends React.Component {
 
     return (
       <div>
-        <Typography color="textPrimary">photo rail</Typography>
-        <MediaBox
-          media={
-            media.length > 5
-              ? media.slice(Math.max(media.length - 6, 1))
-              : media
-          }
-        />
+        {media.lenght > 0 && (
+          <div>
+            <Typography color="textPrimary">
+              <Icon fontSize="small">image</Icon>
+              {media.length} fotos
+            </Typography>
+            <MediaBox media={media} />}
+          </div>
+        )}
       </div>
     );
   }

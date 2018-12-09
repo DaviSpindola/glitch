@@ -1,11 +1,12 @@
 import React from "react";
 import { compose } from "recompose";
 import { connect } from "react-redux";
+import Loader from "react-loader-spinner";
 
 import PublicationForm from "./PublicationForm";
-import * as Media from "../../../firebase/storage/media";
-import withAuthentication from "../../reusable/withAuthentication";
-import * as Publication from "../../../firebase/firestore/user/plubication";
+import * as Media from "../../../../firebase/storage/media";
+import withAuthentication from "../../../reusable/withAuthentication";
+import * as Publication from "../../../../firebase/firestore/user/plubication";
 
 /**
  * Manage user publications
@@ -16,7 +17,8 @@ import * as Publication from "../../../firebase/firestore/user/plubication";
 class PublicationContainer extends React.Component {
   state = {
     content: "",
-    mediaImage: null
+    mediaImage: null,
+    isLoading: false
   };
 
   /**
@@ -40,6 +42,7 @@ class PublicationContainer extends React.Component {
 
     Publication.post({ content, ...media }, authUser).then(() => {
       sendNotification("Você acaba de fazer uma publicação!");
+      this.setState({ isLoading: false });
     });
   };
 
@@ -47,6 +50,8 @@ class PublicationContainer extends React.Component {
    * Post publication
    */
   handleSubmit = e => {
+    this.setState({ isLoading: true });
+
     const { content, mediaImage } = this.state;
     e.preventDefault();
 
@@ -66,8 +71,6 @@ class PublicationContainer extends React.Component {
         console.log("content:", content);
         console.log("media image:", mediaImage);
       }
-
-      return false;
     }
   };
 
@@ -81,7 +84,11 @@ class PublicationContainer extends React.Component {
   };
 
   render() {
-    return (
+    const { isLoading } = this.state;
+
+    return isLoading ? (
+      <Loader type="Triangle" color="#fff" />
+    ) : (
       <PublicationForm
         handleSubmit={this.handleSubmit}
         {...this.state}

@@ -1,6 +1,6 @@
 export default theme => ({
   root: {
-    padding: 10
+    width: "100%"
   },
   form: {},
   formContent: {
@@ -9,7 +9,7 @@ export default theme => ({
   formActions: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "space-between"
   },
   actions: {},
   handleImage: {},

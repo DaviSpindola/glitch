@@ -13,15 +13,15 @@ import {
 class ProfileHeaderCard extends React.Component {
   render() {
     const {
-      userProfile: { photo, username, nickname, description },
+      userProfile: { photo, username, name, description },
       classes
     } = this.props;
     return (
       <Card className={classes.root}>
         <CardHeader
           avatar={<Avatar src={photo} />}
-          title={username}
-          subheader={`@${nickname}`}
+          title={name}
+          subheader={`@${username}`}
         />
         <CardContent>
           <Typography>{description}</Typography>
@@ -37,6 +37,8 @@ const mapStateToProps = state => ({
 
 const styles = ({ palette }) => ({
   root: {
+    display: "flex",
+    justifyContent: "space-between",
     backgroundColor: palette.primary.light,
     width: "100%"
   }

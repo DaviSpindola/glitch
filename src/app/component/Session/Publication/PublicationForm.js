@@ -4,7 +4,7 @@ import { TextField, IconButton, withStyles } from "@material-ui/core";
 import { PhotoCamera, Send } from "@material-ui/icons";
 
 import styles from "./styles";
-import { noop } from "../../../utils/types";
+import { noop } from "../../../../utils/types";
 
 /**
  * @author davispindola
@@ -36,16 +36,12 @@ const PublicationForm = props => {
             value={content}
             name="content"
             label={`Digite o que vocês está pensando?`}
-            placeholder={`ex: O Anakin é melhor do que o Luke!`}
             onChange={handleContent}
           />
         </div>
 
         <div className={classes.formActions}>
           <div className={classes.actions}>
-            {/* <IconButton onChange={handleImage} type="file" accept="image/*">
-              <PhotoCamera />
-            </IconButton> */}
             <input
               onChange={handleImage}
               name="mediaImage"

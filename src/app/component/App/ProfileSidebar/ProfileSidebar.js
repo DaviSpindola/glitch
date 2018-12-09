@@ -3,8 +3,8 @@ import { compose } from "recompose";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core";
 
-import * as User from "../../../firebase/firestore/user";
-import * as Media from "../../../firebase/firestore/user/media";
+import * as User from "../../../../firebase/firestore/user";
+import * as Media from "../../../../firebase/firestore/user/media";
 import ProfileHeaderCard from "./ProfileHeaderCard";
 import PhotoRail from "../PhotoRail";
 
@@ -12,7 +12,7 @@ class ProfileSidebar extends React.Component {
   componentDidMount() {
     const { match, setProfile } = this.props;
 
-    User.getUser({ nickname: match.params.uid }).then(res => {
+    User.getUser(match.params).then(res => {
       setProfile(res.data());
     });
   }
@@ -22,7 +22,7 @@ class ProfileSidebar extends React.Component {
     return (
       <div className={classes.root}>
         <ProfileHeaderCard />
-        <PhotoRail match={match} />
+        {/* <PhotoRail match={match} /> */}
       </div>
     );
   }
@@ -30,12 +30,10 @@ class ProfileSidebar extends React.Component {
 
 const styles = ({ palette }) => ({
   root: {
-    width: "50%",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     height: "min-content",
-    flexDirection: "column",
-    padding: "0 15px"
+    marginBottom: 5
     // backgroundColor: palette.secondary.main
   }
 });

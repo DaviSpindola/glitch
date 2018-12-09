@@ -11,7 +11,7 @@ import {
 import { compose } from "recompose";
 
 const FeedItem = ({
-  author: { username, photo, nickname },
+  userProfile: { username, photo, nickname },
   content,
   created_at,
   classes,
@@ -33,7 +33,6 @@ const FeedItem = ({
       <div className={classes.publicationContent}>
         <Typography>{content}</Typography>
       </div>
-      {console.log(media)}
       {!!media && media !== "" && (
         <div className={classes.mediaBox}>
           <img

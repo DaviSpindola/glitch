@@ -1,10 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 import Form from "./Form";
 import { auth } from "../../../firebase";
 import { compose } from "recompose";
+
+import * as routes from "../../../constants/routes";
 
 class SignInContainer extends React.Component {
   state = {
@@ -27,7 +29,6 @@ class SignInContainer extends React.Component {
       .doSignInWithEmailAndPassword(this.state)
       .then(authUser => {
         setAuthUser(authUser);
-        history.push(`/${authUser.user.uid}`);
       })
       .catch(this.hasHerror);
   };
@@ -35,6 +36,11 @@ class SignInContainer extends React.Component {
   hasHerror = error => this.setState({ hasError: error });
 
   render() {
+    const { authUser } = this.props;
+    if (authUser && authUser.uid !== undefined) {
+      return <Redirect to={`${routes.MAIN_BASE}/${authUser.uid}`} />;
+    }
+
     return (
       <Form
         inputs={this.state}

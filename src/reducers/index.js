@@ -7,6 +7,7 @@ import userReducer from "./user";
 import feedReducer from "./feed";
 import mediaReducer from "./media";
 import notificationReducer from "./notification";
+import settingsReducer from "./settings";
 
 const rootReducer = combineReducers({
   sessionState: sessionReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   userState: userReducer,
   feedState: feedReducer,
   mediaState: mediaReducer,
-  notificationState: notificationReducer
+  notificationState: notificationReducer,
+  settingsState: settingsReducer
 });
 
 export default rootReducer;

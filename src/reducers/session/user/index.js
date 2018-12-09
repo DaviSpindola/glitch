@@ -1,6 +1,4 @@
-const INITIAL_STATE = {
-  informations: null
-};
+const INITIAL_STATE = {};
 
 const sessionUserReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

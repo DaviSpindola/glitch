@@ -14,7 +14,7 @@ class FloatMenu extends React.Component {
     const { render, children } = this.props;
 
     return (
-      <div style={{ display: "flex" }}>
+      <div>
         {React.cloneElement(render, {
           onClick: this.handleOpen,
           buttonRef: node => {
@@ -34,7 +34,7 @@ class FloatMenu extends React.Component {
               id="menu-list-grow"
               style={{
                 transformOrigin:
-                  placement === "bottom" ? "center top" : "center bottom"
+                  placement === "bottom" ? "right top" : "right bottom"
               }}
             >
               <Paper>

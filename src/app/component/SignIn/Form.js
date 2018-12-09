@@ -13,7 +13,6 @@ const Form = ({ handleInput, handleSubmit, classes, ...inputs }) => {
         value={email}
         onChange={handleInput}
         label="Email"
-        variant="outlined"
       />
       <TextField
         id="sigin-password"
@@ -22,10 +21,9 @@ const Form = ({ handleInput, handleSubmit, classes, ...inputs }) => {
         onChange={handleInput}
         value={password}
         type="password"
-        variant="outlined"
         helperText={<a href="/senha">esqueceu a senha</a>}
       />
-      <Button type="submit" color="primary" variant="outlined">
+      <Button type="submit" color="secondary" variant="outlined">
         Login
       </Button>
     </form>

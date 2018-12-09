@@ -1,30 +1,46 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { compose } from "recompose";
 import { auth } from "../../firebase/firebase";
+import * as r from "../../constants/routes";
 
 const withAuthentication = routes => C => {
   class WithAuthentication extends React.Component {
     componentDidMount() {
-      const { location, history, authUser, setAuthUser } = this.props;
+      const { location, authUser, setAuthUser, receivePost } = this.props;
 
       auth.onAuthStateChanged(user => {
-        user ? setAuthUser(user) : setAuthUser(null);
+        user ? setAuthUser(user) : this.clearState();
       });
 
       if (authUser) {
         if (!routes.includes(location.pathname)) {
-          return history.push(`/${authUser.uid}`);
+          // return history.push(r.MAIN_BASE);
+          return;
         } else {
           return;
         }
-      } else {
-        return history.push("/landing");
       }
     }
 
+    clearState = () => {
+      const { setAuthUser, receivePost } = this.props;
+
+      setAuthUser(null);
+      receivePost([]);
+    };
+
     render() {
+      const { authUser, location } = this.props;
+      if (
+        !authUser &&
+        location.pathname !== "/landing" &&
+        location.pathname !== "/signup"
+      ) {
+        return <Redirect to={r.LANDING} />;
+      }
+
       return <C {...this.props} />;
     }
   }
@@ -34,7 +50,8 @@ const withAuthentication = routes => C => {
   });
 
   const mapDispatchToProps = dispatch => ({
-    setAuthUser: authUser => dispatch({ type: "SET_AUTH_USER", authUser })
+    setAuthUser: authUser => dispatch({ type: "SET_AUTH_USER", authUser }),
+    receivePost: feed => dispatch({ type: "RECEIVE_POST", feed })
   });
 
   return compose(

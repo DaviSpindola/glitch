@@ -3,29 +3,35 @@ import SignInContainer from "../../component/SignIn";
 import { Typography, withStyles, Button } from "@material-ui/core";
 import LinkButton from "../../reusable/LinkButton";
 
-const LandingPage = ({ classes }) => (
-  <React.Fragment>
-    <header className={classes.header}>
-      <SignInContainer />
-    </header>
-    <main className={classes.main}>
-      <article className={classes.content}>
-        <Typography margin="normal" variant="h5" color="textSecondary">
-          Veja o que está acontecendo no mundo agora
-        </Typography>
-        <section>
-          <Typography margin="normal" variant="h6" color="textSecondary">
-            Participe hoje do Twitter.
-          </Typography>
-          <LinkButton
-            route="/signup"
-            children={<Button children="Inscrever-se" />}
-          />
-        </section>
-      </article>
-    </main>
-  </React.Fragment>
-);
+class LandingPage extends React.Component {
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <React.Fragment>
+        <header className={classes.header}>
+          <SignInContainer />
+        </header>
+        <main className={classes.main}>
+          <article className={classes.content}>
+            <Typography margin="normal" variant="h5" color="textSecondary">
+              Compartilhe seus pensamentos agora
+            </Typography>
+            <section>
+              <Typography margin="normal" variant="h6" color="textSecondary">
+                Participe hoje do Glitch.
+              </Typography>
+              <LinkButton
+                route="/signup"
+                children={<Button color="secondary" children="Inscrever-se" />}
+              />
+            </section>
+          </article>
+        </main>
+      </React.Fragment>
+    );
+  }
+}
 
 const styles = theme => ({
   header: {

@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import * as Posts from "../../../firebase/firestore/user/post";
-import * as Publications from "../../../firebase/firestore/user/plubication";
+import * as Publications from "../../../../firebase/firestore/user/plubication";
 import Feed from "./Feed";
 
 class FeedContainer extends React.Component {
   componentDidMount() {
-    const { match } = this.props;
+    const { match, receivePost } = this.props;
+    receivePost([]);
 
     if (match.params.uid) {
       Publications.observePublications(match.params).subscribe();
@@ -22,9 +22,9 @@ class FeedContainer extends React.Component {
   }
 
   render() {
-    const { feed } = this.props;
-
-    return <Feed posts={feed} />;
+    const { feed, authUser, match } = this.props;
+    console.log(authUser.uid === match.params.uid);
+    return <Feed canPost={authUser.uid === match.params.uid} posts={feed} />;
   }
 }
 
@@ -35,7 +35,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  receivePost: post => dispatch({ type: "RECEIVE_POST", post })
+  receivePost: feed => dispatch({ type: "RECEIVE_POST", feed }),
+  addPost: post => dispatch({ type: "ADD_POST", post })
 });
 
 export default connect(

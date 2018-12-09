@@ -38,7 +38,7 @@ export const observePublications = ({ uid }) => {
         collection.docChanges().map(item => {
           if (item.type === "added") {
             store.dispatch({
-              type: "RECEIVE_POST",
+              type: "ADD_POST",
               post: item.doc.data()
             });
             // callback(item.doc.data())

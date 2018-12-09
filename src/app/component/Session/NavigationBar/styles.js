@@ -1,6 +1,6 @@
 const styles = ({ palette }) => ({
   root: {
-    position: "initial",
+    position: "fixed",
     zIndex: 10,
     backgroundColor: palette.primary.light
   },
@@ -8,10 +8,7 @@ const styles = ({ palette }) => ({
     display: "flex",
     zIndex: 10,
     "& > *": {
-      flex: 1,
-      "& > div": {
-        paddingLeft: "20px"
-      }
+      flex: 1
     }
   },
   lateralMenu: {

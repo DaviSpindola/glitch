@@ -4,10 +4,14 @@ import { withStyles } from "@material-ui/core";
 
 const MediaBox = ({ media, classes }) => (
   <div>
-    {media.map(({ url }) => {
+    {media.map(({ dowloadUrl }) => {
       return (
         <span>
-          <img className={classes.image} src={url} alt={"posted media"} />
+          <img
+            className={classes.image}
+            src={dowloadUrl}
+            alt={"posted media"}
+          />
         </span>
       );
     })}

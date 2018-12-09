@@ -11,8 +11,8 @@ export const postUser = ({ username, name, email, photo }, uid) => {
     .collection(`users`)
     .doc(uid)
     .set({
-      username,
       name,
+      username,
       email,
       photo
     })
@@ -67,4 +67,11 @@ export const getFollowing = ({ uid }) => {
     .doc(uid)
     .collection(`following`)
     .get();
+};
+
+export const update = ({ uid }, data) => {
+  return fs
+    .collection(`users`)
+    .doc(uid)
+    .update(data);
 };
