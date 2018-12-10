@@ -93,7 +93,6 @@ class PublicationContainer extends React.Component {
         handleSubmit={this.handleSubmit}
         {...this.state}
         handleInput={this.handleInput}
-        disabled={this.isValid}
       />
     );
   }

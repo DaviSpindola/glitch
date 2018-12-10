@@ -50,7 +50,10 @@ const PublicationForm = props => {
             />
           </div>
           <div className={classes.send}>
-            <IconButton type="submit">
+            <IconButton
+              disabled={!(content.length > 0) && mediaImage === null}
+              type="submit"
+            >
               <Send />
             </IconButton>
           </div>
