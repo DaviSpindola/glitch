@@ -16,7 +16,7 @@ const Form = ({ handleInput, handleSubmit, classes, ...inputs }) => {
       />
       <TextField
         id="sigup-nickname"
-        label="Nome de usuário"
+        label="User"
         name="username"
         value={username}
         onChange={handleInput}
@@ -31,7 +31,7 @@ const Form = ({ handleInput, handleSubmit, classes, ...inputs }) => {
       />
       <TextField
         id="sigup-password"
-        label="Password"
+        label="Senha"
         name="password"
         value={password}
         onChange={handleInput}
