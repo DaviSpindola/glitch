@@ -34,3 +34,10 @@ app layer includes:
 
 - navigation feed
 - profile canopy
+
+stack:
+
+- firestore
+- cloud storage
+- app engine
+- react
