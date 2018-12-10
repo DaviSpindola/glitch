@@ -2,40 +2,41 @@ import React from "react";
 import SignInContainer from "../../component/SignIn";
 import { Typography, withStyles, Button } from "@material-ui/core";
 import LinkButton from "../../reusable/LinkButton";
+import SignUpContainer from "../../component/SignUp";
 
 class LandingPage extends React.Component {
   render() {
     const { classes } = this.props;
 
     return (
-      <React.Fragment>
+      <div className={classes.root}>
         <header className={classes.header}>
           <SignInContainer />
         </header>
         <main className={classes.main}>
           <article className={classes.content}>
-            <Typography margin="normal" variant="h5" color="textSecondary">
-              Compartilhe seus pensamentos agora
-            </Typography>
             <section>
               <Typography margin="normal" variant="h6" color="textSecondary">
                 Participe hoje do Glitch.
               </Typography>
-              <LinkButton
+              {/* <LinkButton
                 route="/signup"
                 children={<Button color="secondary" children="Inscrever-se" />}
-              />
+              /> */}
             </section>
+            <SignUpContainer />
           </article>
         </main>
-      </React.Fragment>
+      </div>
     );
   }
 }
 
 const styles = theme => ({
+  root: {
+    height: "100vh"
+  },
   header: {
-    position: "fixed",
     width: "100%"
   },
   main: {
@@ -43,11 +44,9 @@ const styles = theme => ({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    height: "100vh"
+    height: "80%"
   },
-  content: {
-    width: "50%"
-  }
+  content: {}
 });
 
 export default withStyles(styles)(LandingPage);

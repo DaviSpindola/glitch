@@ -12,7 +12,7 @@ import NavigationBar from "./component/Session/NavigationBar";
 
 class TwitterContainer extends React.Component {
   componentDidMount() {
-    const { authUser, setSessionUser, history } = this.props;
+    const { authUser, setSessionUser } = this.props;
 
     if (authUser && authUser.uid !== null) {
       User.get(authUser).then(snapshot => {
@@ -21,10 +21,6 @@ class TwitterContainer extends React.Component {
         });
       });
     }
-
-    // if (authUser && authUser.uid !== undefined) {
-    //   history.push(`${routes.MAIN_BASE}/${authUser.uid}`);
-    // }
   }
 
   render() {
@@ -66,7 +62,7 @@ const mapDispatchToProps = dispatch => ({
 
 const styles = theme => ({
   main: {
-    marginTop: 65
+    marginTop: 50
   }
 });
 

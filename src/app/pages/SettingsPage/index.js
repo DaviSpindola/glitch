@@ -1,12 +1,15 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import { withStyles } from "@material-ui/core";
 
+import styles from "./styles";
 import * as routes from "../../../constants/routes";
 import SettingsEditContainer from "../../component/Session/Settings/SettingsEditContainer";
 
-const SettingsPage = () => {
+const SettingsPage = props => {
+  const { classes } = props;
   return (
-    <div>
+    <div className={classes.root}>
       <Switch>
         <Route
           path={routes.SETTINGS_PAGE_EDIT}
@@ -17,4 +20,4 @@ const SettingsPage = () => {
   );
 };
 
-export default SettingsPage;
+export default withStyles(styles)(SettingsPage);

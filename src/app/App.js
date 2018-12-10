@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import "./App.css";
+
 import PagesContainer from "./pages";
-import withAuthentication from "./reusable/withAuthentication";
-import { noAuthRoutes } from "../constants/routes";
 import Notification from "./reusable/Notification";
+import { noAuthRoutes } from "../constants/routes";
+import withAuthentication from "./reusable/withAuthentication";
 
 class App extends Component {
   componentDidMount() {
-    document.title = "Twitter";
+    document.title = "Glitch";
   }
 
   render() {

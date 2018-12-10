@@ -1,16 +1,18 @@
 import React from "react";
 import { compose } from "recompose";
 import { connect } from "react-redux";
+import Loader from "react-loader-spinner";
+import { Typography } from "@material-ui/core";
 
-import * as Users from "../../../../firebase/firestore/user";
 import SettingsForm from "./SettingsForm";
 import * as Media from "../../../../firebase/storage/media";
-import { Typography } from "@material-ui/core";
+import * as Users from "../../../../firebase/firestore/user";
 
 class SettingsEditContainer extends React.PureComponent {
   state = {
     settings: null,
-    photo: null
+    photo: null,
+    cover: null
   };
 
   componentDidMount() {
@@ -27,15 +29,13 @@ class SettingsEditContainer extends React.PureComponent {
     });
   };
 
-  handlePhoto = async e => {
-    const { photo } = this.state;
-    await this.setState({ photo: e.target.files[0] });
-    console.log(photo);
+  handlePhoto = ({ target }) => {
+    this.setState({ [target.name]: target.files[0] });
   };
 
   handleSubmit = e => {
-    const { authUser } = this.props;
-    const { settings, photo } = this.state;
+    const { authUser, sendNotification } = this.props;
+    const { photo, cover } = this.state;
 
     if (photo !== null && authUser.uid) {
       Media.uploadMedia(authUser.uid, photo).then(({ ref }) => {
@@ -47,18 +47,41 @@ class SettingsEditContainer extends React.PureComponent {
           });
 
           Users.update(authUser, this.state.settings)
-            .then(console.log)
+            .then(() => {
+              sendNotification("Informações atualizadas");
+            })
             .catch(console.log);
+
+          this.setState({ photo: null });
         });
       });
     }
 
-    console.log(settings);
+    if (cover !== null && authUser.uid) {
+      Media.uploadMedia(authUser.uid, cover).then(({ ref }) => {
+        ref.getDownloadURL().then(res => {
+          this.setState({
+            settings: Object.assign({}, this.state.settings, {
+              cover: res
+            })
+          });
 
-    if (!photo) {
-      debugger;
+          Users.update(authUser, this.state.settings)
+            .then(() => {
+              sendNotification("Informações atualizadas");
+            })
+            .catch(console.log);
+
+          this.setState({ cover: null });
+        });
+      });
+    }
+
+    if (!photo && !cover) {
       Users.update(authUser, this.state.settings)
-        .then(console.log)
+        .then(() => {
+          sendNotification("Informações atualizadas");
+        })
         .catch(console.log);
     }
 
@@ -70,7 +93,7 @@ class SettingsEditContainer extends React.PureComponent {
 
     return (
       <div>
-        <Typography>Editar informações</Typography>
+        <Typography variant="h6">Editar informações da conta</Typography>
 
         <SettingsForm
           handleSubmit={this.handleSubmit}
@@ -89,7 +112,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveSettings: settings => dispatch({ type: "RECEIVE_SETTINGS", settings })
+  receiveSettings: settings => dispatch({ type: "RECEIVE_SETTINGS", settings }),
+  sendNotification: message => dispatch({ type: "SEND_NOTIFICATION", message })
 });
 
 export default compose(

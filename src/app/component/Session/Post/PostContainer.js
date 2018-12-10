@@ -38,6 +38,7 @@ class PostContainer extends React.Component {
     return (
       <div>
         <DialogContainer
+          classes={classes.root}
           render={
             <Fab className={classes.postButton}>
               <Icon>create</Icon>

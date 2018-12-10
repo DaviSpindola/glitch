@@ -1,5 +1,5 @@
 import React from "react";
-import { List, withStyles } from "@material-ui/core";
+import { List, withStyles, Typography } from "@material-ui/core";
 import _ from "lodash";
 import FeedItemContainer from "./FeedItemContainer";
 import PublicationContainer from "../../Session/Publication/PublicationContainer";
@@ -8,24 +8,33 @@ const Feed = ({ posts, classes, canPost }) => {
   return (
     <div className={classes.root}>
       <div className={classes.container}>
-        <List>
-          {canPost && (
-            <div className={classes.publication}>
-              <PublicationContainer />
-            </div>
-          )}
-          {_.orderBy(posts, ["created_at"], ["desc"]).map(
-            ({ content, created_at, author, dowloadUrl }, key) => (
-              <FeedItemContainer
-                key={key}
-                content={content}
-                media={dowloadUrl}
-                uid={author}
-                created_at={created_at}
-              />
-            )
-          )}
-        </List>
+        {canPost && (
+          <div className={classes.publication}>
+            <PublicationContainer />
+          </div>
+        )}
+
+        {!(posts !== null && posts.length > 0) ? (
+          <div className={classes.publication}>
+            <Typography variant="overline">
+              você ainda não possui publicações
+            </Typography>
+          </div>
+        ) : (
+          <List>
+            {_.orderBy(posts, ["created_at"], ["desc"]).map(
+              ({ content, created_at, author, dowloadUrl }, key) => (
+                <FeedItemContainer
+                  key={key}
+                  content={content}
+                  media={dowloadUrl}
+                  uid={author}
+                  created_at={created_at}
+                />
+              )
+            )}
+          </List>
+        )}
       </div>
     </div>
   );
@@ -34,7 +43,8 @@ const Feed = ({ posts, classes, canPost }) => {
 const styles = ({ palette }) => ({
   root: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    paddingBottom: 100
   },
   container: {
     width: "50%",
@@ -51,11 +61,11 @@ const styles = ({ palette }) => ({
     justifyContent: "center",
     padding: 15,
     border: `1px solid ${palette.primary.main}`,
-    backgroundColor: palette.primary.light,
+    backgroundColor: palette.primary.contrast,
     marginBottom: 5,
     borderRadius: 5,
     "&:hover": {
-      backgroundColor: palette.primary.light
+      backgroundColor: palette.primary.contrast
     }
   }
 });

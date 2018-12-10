@@ -4,9 +4,8 @@ const styles = ({ spacing }) => ({
     alignItems: "center",
     flexDirection: "column",
     alignContent: "center",
-    height: "100vh",
     "& > *": {
-      margin: spacing.unit
+      margin: spacing.unit + 2
     },
     "& > button": {
       borderRadius: spacing.unit * 10

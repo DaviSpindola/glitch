@@ -39,7 +39,7 @@ const styles = ({ palette }) => ({
   root: {
     display: "flex",
     justifyContent: "space-between",
-    backgroundColor: palette.primary.light,
+    backgroundColor: palette.primary.contrast,
     width: "100%"
   }
 });

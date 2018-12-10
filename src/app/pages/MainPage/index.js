@@ -19,6 +19,8 @@ class MainPage extends React.Component {
       User.get(match.params).then(snapshot => {
         snapshot.ref.onSnapshot(doc => {
           setUserProfile(doc.data());
+
+          document.title = `Glitch @${doc.data().username}`;
         });
       });
     }
@@ -29,7 +31,6 @@ class MainPage extends React.Component {
 
     return (
       <div className={classes.root}>
-        {/* <ProfileSidebar match={match} k/> */}
         <ProfileCanopy />
         <Switch>
           <Route
@@ -45,7 +46,6 @@ class MainPage extends React.Component {
         </Switch>
         <PostContainer />
       </div>
-      // // );
     );
   }
 }

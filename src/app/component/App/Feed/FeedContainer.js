@@ -23,7 +23,6 @@ class FeedContainer extends React.Component {
 
   render() {
     const { feed, authUser, match } = this.props;
-    console.log(authUser.uid === match.params.uid);
     return <Feed canPost={authUser.uid === match.params.uid} posts={feed} />;
   }
 }

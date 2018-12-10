@@ -4,7 +4,6 @@ import {
   ListItem,
   ListItemAvatar,
   Avatar,
-  ListItemText,
   Typography,
   withStyles
 } from "@material-ui/core";
@@ -53,11 +52,11 @@ const styles = ({ palette }) => ({
     maxHeight: 400,
     padding: 15,
     border: `1px solid ${palette.primary.main}`,
-    backgroundColor: palette.primary.light,
+    backgroundColor: palette.primary.contrast,
     marginBottom: 5,
     borderRadius: 5,
     "&:hover": {
-      backgroundColor: palette.primary.light
+      backgroundColor: palette.primary.contrast
     }
   },
   publicationHeader: {

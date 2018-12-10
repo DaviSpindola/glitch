@@ -21,7 +21,7 @@ const Form = ({ handleInput, handleSubmit, classes, ...inputs }) => {
         onChange={handleInput}
         value={password}
         type="password"
-        helperText={<a href="/senha">esqueceu a senha</a>}
+        // helperText={<a href="/senha">esqueceu a senha</a>}
       />
       <Button type="submit" color="secondary" variant="outlined">
         Login

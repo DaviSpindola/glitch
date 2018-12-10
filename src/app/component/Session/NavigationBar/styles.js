@@ -2,7 +2,7 @@ const styles = ({ palette }) => ({
   root: {
     position: "fixed",
     zIndex: 10,
-    backgroundColor: palette.primary.light
+    backgroundColor: palette.primary.contrast
   },
   toolbar: {
     display: "flex",

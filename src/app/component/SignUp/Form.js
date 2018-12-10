@@ -37,16 +37,8 @@ const Form = ({ handleInput, handleSubmit, classes, ...inputs }) => {
         onChange={handleInput}
         type="password"
       />
-      <Checkbox
-        id="sigup-is-checked"
-        children="a"
-        color="primary"
-        value={isChecked}
-        checked={isChecked}
-        onChange={handleInput}
-      />
-      <Button type="submit" color="primary" variant="outlined">
-        Inscrever-se
+      <Button fullWidth type="submit" color="secondary" variant="outlined">
+        enviar
       </Button>
     </form>
   );

@@ -42,7 +42,7 @@ class PublicationContainer extends React.Component {
 
     Publication.post({ content, ...media }, authUser).then(() => {
       sendNotification("Você acaba de fazer uma publicação!");
-      this.setState({ isLoading: false });
+      this.setState({ isLoading: false, mediaImage: null, content: "" });
     });
   };
 
