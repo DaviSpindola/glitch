@@ -37,7 +37,8 @@ const styles = theme => ({
     height: "100vh"
   },
   header: {
-    width: "100%"
+    width: "100%",
+    backgroundColor: theme.palette.primary.contrast
   },
   main: {
     display: "flex",
