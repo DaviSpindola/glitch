@@ -6,6 +6,7 @@ import LandingPage from "./LandingPage/index";
 import SettingsPage from "./SettingsPage";
 import SignUpContainer from "../component/SignUp";
 import TwitterContainer from "../Twitter";
+import InProgress from "./InProgress";
 
 const pages = [
   {
@@ -22,7 +23,12 @@ const pages = [
     isExact: false,
     path: routes.BASE_URL,
     component: TwitterContainer
-  }
+  },
+  // {
+  //   isExact: false,
+  //   path: '/progress',
+  //   component: InProgress
+  // }
 ];
 
 class PagesContainer extends React.Component {

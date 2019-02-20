@@ -37,10 +37,10 @@ class MainPage extends React.Component {
             exact
             path={routes.MAIN_BASE_PROFILE}
             render={props => (
-              <div>
+              <>
                 <ProfileSidebar {...props} />
                 <FeedContainer {...props} />
-              </div>
+              </>
             )}
           />
         </Switch>

@@ -9,6 +9,7 @@ import * as routes from "../constants/routes";
 import * as User from "../firebase/firestore/user";
 import SettingsPage from "./pages/SettingsPage";
 import NavigationBar from "./component/Session/NavigationBar";
+import InProgress from "./pages/InProgress";
 
 class TwitterContainer extends React.Component {
   componentDidMount() {
@@ -31,20 +32,21 @@ class TwitterContainer extends React.Component {
         {Object.keys(sessionUser) > 0 ? (
           <h1>carregando</h1>
         ) : (
-          <div className={classes.main}>
-            <NavigationBar />
-            <Switch>
-              <Route
-                path={`${routes.MAIN_BASE_PROFILE}`}
-                render={props => <MainPage {...props} />}
-              />
-              <Route
-                path={routes.SETTINGS_PAGE}
-                render={props => <SettingsPage {...props} />}
-              />
-            </Switch>
-          </div>
-        )}
+            <div className={classes.main}>
+              <NavigationBar />
+              <Switch>
+                <Route
+                  path={`${routes.MAIN_BASE_PROFILE}`}
+                  render={props => <MainPage {...props} />}
+                />
+                <Route
+                  path={routes.SETTINGS_PAGE}
+                  render={props => <SettingsPage {...props} />}
+                />
+                <Route path="/progress" render={props => <InProgress {...props} />} />
+              </Switch>
+            </div>
+          )}
       </React.Fragment>
     );
   }
