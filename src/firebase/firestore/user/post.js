@@ -14,8 +14,8 @@ export const get = ({ uid }) =>
  * @param {*} data | { author, content, created_at, media: [], likes: [] }
  * @param {*} param1 uid => author
  */
-export const post = (data, { uid }) => {
-  return fs
+export const post = (data, { uid }) =>
+  fs
     .collection(`users`)
     .doc(uid)
     .collection(`posts`)
@@ -24,7 +24,6 @@ export const post = (data, { uid }) => {
       author: uid,
       created_at: new Date()
     });
-};
 
 export const observerPosts = ({ uid }) => {
   const subscribe = () =>
@@ -40,8 +39,8 @@ export const observerPosts = ({ uid }) => {
               type: "RECEIVE_POST",
               post: item.doc.data()
             });
-            // callback(item.doc.data())
           }
+          return null;
         });
       });
 

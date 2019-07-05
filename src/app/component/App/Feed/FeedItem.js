@@ -7,7 +7,7 @@ import {
   Typography,
   withStyles
 } from "@material-ui/core";
-import { compose } from "recompose";
+import { compose } from "redux";
 
 const FeedItem = ({
   userProfile: { username, photo, nickname },

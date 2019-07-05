@@ -1,5 +1,5 @@
 import React from "react";
-import { compose } from "recompose";
+import { compose } from "redux";
 import { connect } from "react-redux";
 
 import * as Media from "../../../../firebase/firestore/user/media";

@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter, Redirect } from "react-router-dom";
-import { compose } from "recompose";
+import { compose } from "redux";
 import { auth } from "../../firebase/firebase";
 import * as r from "../../constants/routes";
 
 const withAuthentication = routes => C => {
   class WithAuthentication extends React.Component {
     componentDidMount() {
-      const { location, authUser, setAuthUser, receivePost } = this.props;
+      const { location, authUser, setAuthUser } = this.props;
 
       auth.onAuthStateChanged(user => {
         user ? setAuthUser(user) : this.clearState();
@@ -16,7 +16,6 @@ const withAuthentication = routes => C => {
 
       if (authUser) {
         if (!routes.includes(location.pathname)) {
-          // return history.push(r.MAIN_BASE);
           return;
         } else {
           return;

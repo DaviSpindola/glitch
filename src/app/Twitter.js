@@ -1,5 +1,5 @@
 import React from "react";
-import { compose } from "recompose";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
@@ -32,21 +32,24 @@ class TwitterContainer extends React.Component {
         {Object.keys(sessionUser) > 0 ? (
           <h1>carregando</h1>
         ) : (
-            <div className={classes.main}>
-              <NavigationBar />
-              <Switch>
-                <Route
-                  path={`${routes.MAIN_BASE_PROFILE}`}
-                  render={props => <MainPage {...props} />}
-                />
-                <Route
-                  path={routes.SETTINGS_PAGE}
-                  render={props => <SettingsPage {...props} />}
-                />
-                <Route path="/progress" render={props => <InProgress {...props} />} />
-              </Switch>
-            </div>
-          )}
+          <div className={classes.main}>
+            <NavigationBar />
+            <Switch>
+              <Route
+                path={`${routes.MAIN_BASE_PROFILE}`}
+                render={props => <MainPage {...props} />}
+              />
+              <Route
+                path={routes.SETTINGS_PAGE}
+                render={props => <SettingsPage {...props} />}
+              />
+              <Route
+                path="/progress"
+                render={props => <InProgress {...props} />}
+              />
+            </Switch>
+          </div>
+        )}
       </React.Fragment>
     );
   }

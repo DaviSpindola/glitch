@@ -1,7 +1,6 @@
 import React from "react";
 import SignInContainer from "../../component/SignIn";
-import { Typography, withStyles, Button } from "@material-ui/core";
-import LinkButton from "../../reusable/LinkButton";
+import { Typography, withStyles } from "@material-ui/core";
 import SignUpContainer from "../../component/SignUp";
 
 class LandingPage extends React.Component {

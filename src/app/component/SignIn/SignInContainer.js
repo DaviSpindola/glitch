@@ -4,7 +4,7 @@ import { withRouter, Redirect } from "react-router-dom";
 
 import Form from "./Form";
 import { auth } from "../../../firebase";
-import { compose } from "recompose";
+import { compose } from "redux";
 
 import * as routes from "../../../constants/routes";
 
@@ -23,7 +23,7 @@ class SignInContainer extends React.Component {
   };
 
   loginUser = () => {
-    const { setAuthUser, history } = this.props;
+    const { setAuthUser } = this.props;
 
     auth
       .doSignInWithEmailAndPassword(this.state)

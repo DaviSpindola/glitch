@@ -1,7 +1,6 @@
 import React from "react";
-import { compose } from "recompose";
+import { compose } from "redux";
 import { connect } from "react-redux";
-import Loader from "react-loader-spinner";
 import { Typography } from "@material-ui/core";
 
 import SettingsForm from "./SettingsForm";

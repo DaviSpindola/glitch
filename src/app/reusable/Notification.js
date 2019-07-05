@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { compose } from "recompose";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import { Snackbar } from "@material-ui/core";
 

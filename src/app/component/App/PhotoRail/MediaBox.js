@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 import { withStyles } from "@material-ui/core";
 
 const MediaBox = ({ media, classes }) => (

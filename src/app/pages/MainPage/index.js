@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { compose } from "recompose";
+import { compose } from "redux";
 import { Switch, Route, withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 
@@ -9,7 +9,6 @@ import FeedContainer from "../../component/App/Feed";
 import * as User from "../../../firebase/firestore/user";
 import ProfileSidebar from "../../component/App/ProfileSidebar";
 import ProfileCanopy from "../../component/App/ProfileCanopy";
-import NavigationBar from "../../component/Session/NavigationBar";
 import PostContainer from "../../component/Session/Post/PostContainer";
 
 class MainPage extends React.Component {

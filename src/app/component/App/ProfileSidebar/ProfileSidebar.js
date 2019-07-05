@@ -1,12 +1,10 @@
 import React from "react";
-import { compose } from "recompose";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core";
 
 import * as User from "../../../../firebase/firestore/user";
-import * as Media from "../../../../firebase/firestore/user/media";
 import ProfileHeaderCard from "./ProfileHeaderCard";
-import PhotoRail from "../PhotoRail";
 
 class ProfileSidebar extends React.Component {
   componentDidMount() {
@@ -18,7 +16,7 @@ class ProfileSidebar extends React.Component {
   }
 
   render() {
-    const { classes, match } = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <ProfileHeaderCard />

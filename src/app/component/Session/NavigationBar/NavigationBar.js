@@ -9,8 +9,6 @@ import {
   IconButton
 } from "@material-ui/core";
 import styles from "./styles";
-// import FloatMenu from "../../../reusable/FloatMenu";
-// import { ExitToApp } from "@material-ui/icons";
 import { auth } from "../../../../firebase";
 import LinkButton from "../../../reusable/LinkButton";
 

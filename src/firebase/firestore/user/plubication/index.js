@@ -27,35 +27,32 @@ export const post = (data, { uid }) => {
     });
 };
 
-export const observePublications = ({ uid }) => {
-  const subscribe = () =>
-    fs
-      .collection(`users`)
-      .doc(uid)
-      .collection(`publications`)
-      .orderBy("created_at", "desc")
-      .onSnapshot(collection => {
-        collection.docChanges().map(item => {
-          if (item.type === "added") {
-            store.dispatch({
-              type: "ADD_POST",
-              post: item.doc.data()
-            });
-            // callback(item.doc.data())
-          }
-        });
-      });
+const subscribe = uid => () =>
+  fs
+    .collection(`users`)
+    .doc(uid)
+    .collection(`publications`)
+    .orderBy("created_at", "desc")
+    .onSnapshot(collection =>
+      collection.docChanges().map(
+        item =>
+          item.type === "added" &&
+          store.dispatch({
+            type: "ADD_POST",
+            post: item.doc.data()
+          })
+      )
+    );
 
-  const unsubscribe = () => {
-    fs.collection(`users`)
-      .doc(uid)
-      .collection(`publications`)
-      .orderBy("created_at", "desc")
-      .onSnapshot(() => {});
-  };
-
-  return {
-    subscribe,
-    unsubscribe
-  };
+const unsubscribe = uid => () => {
+  fs.collection(`users`)
+    .doc(uid)
+    .collection(`publications`)
+    .orderBy("created_at", "desc")
+    .onSnapshot(() => {});
 };
+
+export const observePublications = ({ uid }) => ({
+  subscribe: subscribe(uid),
+  unsubscribe: unsubscribe(uid)
+});

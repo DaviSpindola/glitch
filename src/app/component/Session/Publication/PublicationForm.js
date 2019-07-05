@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TextField, IconButton, withStyles } from "@material-ui/core";
-import { PhotoCamera, Send } from "@material-ui/icons";
+import { Send } from "@material-ui/icons";
 
 import styles from "./styles";
 import { noop } from "../../../../utils/types";

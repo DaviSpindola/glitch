@@ -1,9 +1,9 @@
 import React from "react";
-import { TextField, Button, withStyles, Checkbox } from "@material-ui/core";
+import { TextField, Button, withStyles } from "@material-ui/core";
 import styles from "./styles";
 
 const Form = ({ handleInput, handleSubmit, classes, ...inputs }) => {
-  const { name, username, email, password, isChecked } = inputs;
+  const { name, username, email, password } = inputs;
 
   return (
     <form onSubmit={handleSubmit} className={classes.root}>

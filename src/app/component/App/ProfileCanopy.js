@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core";
-import { compose } from "recompose";
+import { compose } from "redux";
 import withUserProfileInfo from "./withUserProfileInfo";
 
 const ProfileCanopy = props => {

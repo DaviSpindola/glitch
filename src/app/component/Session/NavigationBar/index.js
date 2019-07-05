@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import NavigationBar from "./NavigationBar";
 import withSessionInfo from "../withSessionInfo";

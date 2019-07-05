@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { compose } from "recompose";
+import { compose } from "redux";
 import { connect } from "react-redux";
 
 import * as routes from "../../constants/routes";
